@@ -1,0 +1,33 @@
+<html>
+
+<body>
+
+    <h1>NUMERO ALEATORIO</h1>
+    <script>
+        var random = Math.floor(Math.random() * 101);
+        document.write(random);
+
+        var cont = 0;
+
+        do {
+            var resp = prompt("Introduce un numero")
+            cont++;
+            if (resp == random) {
+                alert("Has acertado, numero de intentos: " + cont)
+                break;
+            } else {
+
+                if (resp > random) {
+                    console.log("El numero es menor")
+                } else {
+                    console.log("El numero es mayor")
+                }
+
+            }
+
+        } while (resp != random);
+    </script>
+
+</body>
+
+</html>
