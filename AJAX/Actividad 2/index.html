@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<div id="demo">
+<h1>The XMLHttpRequest Object</h1>
+<button type="button" onclick="loadDoc()">Change Content</button>
+
+<select id="opciones"></option>
+<h1 id="CP"></h1>
+</div>
+
+
+<script>
+  function loadDoc() {
+    var respuesta = new XMLHttpRequest();
+    respuesta.open("GET", "provincias.json", true);
+    respuesta.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        var objeto = JSON.parse(this.responseText)
+
+       var select = document.getElementById("opciones")
+       var demo = document.getElementById("demo")
+
+
+       var cp = document.createElement("h1")
+        
+         demo.appendChild(cp)
+
+        for (let i = 0; i < objeto.provincias.length; i++) {
+         var option = document.createElement("option")
+         var optiontxt = document.createTextNode(objeto.provincias[i].nom)
+         option.appendChild(optiontxt)
+         select.appendChild(option)
+
+         option.addEventListener("click",e =>{
+         cp.innerHTML=objeto.provincias[i].cp
+         })
+        }
+      }
+    };
+    
+    respuesta.send();
+  }
+  </script>
+
+</body>
+</html>
